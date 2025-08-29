@@ -43,7 +43,7 @@ const Login = () => {
 
   return (
     <SafeAreaView style={MainStyle.safeView}>
-      <View style={MainStyle.main}>
+      <View style={[MainStyle.main]}>
         <Text style={style.header}>LOGIN</Text>
         {loginError ? <Text style={style.error}>{loginError}</Text> : null}
         <Text style={style.title}>Email</Text>

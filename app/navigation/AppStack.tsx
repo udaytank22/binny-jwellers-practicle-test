@@ -24,6 +24,7 @@ const AppStack = () => {
           <Stack.Screen name="Home" options={{ headerShown: false }} />
           <Stack.Screen name="PostList" options={{ headerShown: false }} />
           <Stack.Screen name="PostDetails" options={{ headerShown: false }} />
+          <Stack.Screen name="Count" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </>
       )}

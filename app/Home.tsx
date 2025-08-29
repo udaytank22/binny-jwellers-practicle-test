@@ -9,12 +9,20 @@ const Home = () => {
 
   return (
     <SafeAreaView style={MainStyle.safeView}>
-      <Pressable
-        style={style.button}
-        onPress={() => navigation.navigate("PostList")}
-      >
-        <Text style={style.buttonText}>Post List</Text>
-      </Pressable>
+      <View style={[MainStyle.main, { gap: 20 }]}>
+        <Pressable
+          style={style.button}
+          onPress={() => navigation.navigate("PostList")}
+        >
+          <Text style={style.buttonText}>Post List</Text>
+        </Pressable>
+        <Pressable
+          style={style.button}
+          onPress={() => navigation.navigate("Count")}
+        >
+          <Text style={style.buttonText}>Count App</Text>
+        </Pressable>
+      </View>
     </SafeAreaView>
   );
 };
