@@ -21,6 +21,7 @@ const Count = () => {
           </Text>
         </View>
       </View>
+      ``
     </SafeAreaView>
   );
 };
