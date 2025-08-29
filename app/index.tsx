@@ -9,8 +9,12 @@ import {
 import React, { useState } from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "@react-navigation/elements";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "expo-router";
+import MainStyle from "@/assets/style/MainStyle";
 
 const Login = () => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,12 +26,24 @@ const Login = () => {
       return;
     }
     SetLoginError("");
-    Alert.alert("Login", `Email: ${email} and Password: ${password}`);
+    Alert.alert("Login", `Email: ${email} and Password: ${password}`, [
+      {
+        text: "OK",
+        onPress: async () => {
+          try {
+            await AsyncStorage.setItem("token", `${email}_${password}`);
+            navigation.navigate("Home");
+          } catch (error) {
+            console.log("error", error);
+          }
+        },
+      },
+    ]);
   };
 
   return (
-    <SafeAreaView style={style.safeView}>
-      <View style={style.main}>
+    <SafeAreaView style={MainStyle.safeView}>
+      <View style={MainStyle.main}>
         <Text style={style.header}>LOGIN</Text>
         {loginError ? <Text style={style.error}>{loginError}</Text> : null}
         <Text style={style.title}>Email</Text>
@@ -54,11 +70,6 @@ const Login = () => {
 };
 
 const style = StyleSheet.create({
-  safeView: { flex: 1, padding: 20 },
-  main: {
-    flex: 1,
-    justifyContent: "center",
-  },
   header: {
     fontSize: 20,
     fontWeight: "600",
